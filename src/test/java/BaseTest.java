@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.time.Duration;
-
 public class BaseTest {
 
     public static WebDriver driver = null;

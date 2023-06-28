@@ -6,8 +6,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     @Test
     public void LoginEmptyEmailPasswordTest() {
-
-//      Added ChromeOptions argument below to fix websocket error
+//     Added ChromeOptions argument below to fix websocket error
         openLoginUrl();
         enterEmail("yuliyakis85@gmail.com");
         enterPassword("te$t$tudent");
