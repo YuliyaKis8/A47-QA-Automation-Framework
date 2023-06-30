@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 public class BaseTest {
@@ -18,16 +16,30 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
-    static void launchBrowser(){
+    @Parameters({"BaseURL"})
+    static void launchBrowser(String BaseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        url =BaseURL;
+        driver.get(url);
     }
     @AfterMethod
     static void closeBrowser(){
         driver.quit();
     }
+    @DataProvider(name="IncorrectLoginProviders")
+    public static Object [][] getDataFromDataProviders(){
+        return new Object[][] {
+                {"NotExistingEmail@mail.com, NotExistingPassword"},
+                {"yuliyakis85@gmail.com", " "},
+                {" ", " "},
+
+        };
+    }
+
     protected void openLoginUrl() {
         String url = "https://qa.koel.app/";
         driver.get(url);
@@ -50,4 +62,5 @@ public class BaseTest {
         WebElement logInButton = driver.findElement(By.cssSelector("[type='submit']"));
         logInButton.click();
     }
+
 }
