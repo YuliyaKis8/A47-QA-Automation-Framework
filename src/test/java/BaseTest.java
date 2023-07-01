@@ -33,17 +33,17 @@ public class BaseTest {
     @DataProvider(name="IncorrectLoginProviders")
     public static Object [][] getDataFromDataProviders(){
         return new Object[][] {
-                {"NotExistingEmail@mail.com, NotExistingPassword"},
+                {"NotExistingEmail@mail.com", "NotExistingPassword"},
                 {"yuliyakis85@gmail.com", " "},
                 {" ", " "},
 
         };
     }
 
-    protected void openLoginUrl() {
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-    }
+//    protected void openLoginUrl() {
+//        String url = "https://qa.koel.app/";
+//        driver.get(url);
+//    }
 
     protected void enterEmail(String email) {
         WebElement emailField = driver.findElement(By.cssSelector("[type='email']"));

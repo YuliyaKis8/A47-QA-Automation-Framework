@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
     @Test (dataProvider = "IncorrectLoginProviders")
     public void LoginEmptyEmailPasswordTest(String email, String password) {
 //     Added ChromeOptions argument below to fix websocket error
-        openLoginUrl();
+//        openLoginUrl();
         enterEmail(email);
         enterPassword(password);
         clickSubmit();
@@ -21,13 +21,13 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
-    @Test (dataProvider = "IncorrectLoginProviders")
-    public void LoginValidEmailPasswordTest(String email, String password) {
+    @Test
+    public void LoginValidEmailPasswordTest() {
 
 //      Added ChromeOptions argument below to fix websocket error
 //        openLoginUrl();
-        enterEmail(email);
-        enterPassword(password);
+        enterEmail("yuliyakis85@gmail.com");
+        enterPassword("te$t$tudent");
         clickSubmit();
         WebElement userAvatar = driver.findElement(By.cssSelector(".avatar"));
         Assert.assertTrue(userAvatar.isDisplayed());
