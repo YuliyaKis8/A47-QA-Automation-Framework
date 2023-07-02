@@ -3,11 +3,11 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class homeWork19 extends BaseTest {
+public class HomeWork19 extends BaseTest {
     @Test
     public void deletePlaylist() throws InterruptedException {
 
-        String deletedPlaylistMessage = "Deleted Playlist";
+        String deletedPlaylistMessage = "Deleted playlist \"" + "my playlist.\""; 
         
         enterEmail("yuliyakis85@gmail.com");
         enterPassword("te$t$tudent");
