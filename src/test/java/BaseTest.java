@@ -29,6 +29,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url =BaseURL;
         driver.get(url);
+
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,Duration.ofSeconds(4));
     }
@@ -44,39 +45,4 @@ public class BaseTest {
                 {" ", " "},
         };
     }
-
-    protected void openLoginUrl() {
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-    }
-
-    protected void enterEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']")));
-        emailField.clear();
-        emailField.click();
-        emailField.sendKeys(email);
-    }
-    protected void enterPassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']")));
-        passwordField.clear();
-        passwordField.click();
-        passwordField.sendKeys(password);
-    }
-
-    protected void clickSubmit() {
-        WebElement logInButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']")));
-        logInButton.click();
-    }
-
-    public void doubleClickChoosePlaylist(){
-       WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
-       actions.doubleClick(playlistElement).perform();
-    }
-
-    public WebElement hoverPlay() {
-        WebElement playBtn =wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='play-btn']")));
-        actions.moveToElement(playBtn).perform();
-        return driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-    }
-
 }

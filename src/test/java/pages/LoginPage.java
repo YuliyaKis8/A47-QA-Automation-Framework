@@ -25,5 +25,10 @@ public class LoginPage extends BasePage {
         providePassword("te$t$tudent");
         clickSubmit();
     }
+    public void IncorrectLogIn(String email, String password){
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+    }
 
     }
