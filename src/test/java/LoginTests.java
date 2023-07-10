@@ -9,29 +9,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-    @Test (dataProvider = "IncorrectLoginProviders")
-    public void LoginEmptyEmailPasswordTest(String email, String password) {
-//     Added ChromeOptions argument below to fix websocket error
-        openLoginUrl();
-        enterEmail(email);
-        enterPassword(password);
-        clickSubmit();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-
-    }
     @Test
     public void LoginValidEmailPasswordTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.logIn();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-//      Added ChromeOptions argument below to fix websocket error
-//        openLoginUrl();
-        enterEmail("yuliyakis85@gmail.com");
-        enterPassword("te$t$tudent");
-        clickSubmit();
-        WebElement userAvatar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".avatar")));
-        Assert.assertTrue(userAvatar.isDisplayed());
+    }
+    @Test (dataProvider = "IncorrectLoginProviders")
+    public void invalidLoginValidEmailPasswordTest(String email, String password) {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.IncorrectLogIn(email, password);
+        Assert.assertEquals(url, url);
 
     }
 

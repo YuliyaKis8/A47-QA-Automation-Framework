@@ -13,7 +13,6 @@ import java.time.Duration;
 public class BaseTest {
 
     public static WebDriver driver = null;
-
     public static WebDriverWait wait = null;
     public static String url = "https://qa.koel.app/";
     public static Actions actions = null;
@@ -28,9 +27,9 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         url =BaseURL;
         driver.get(url);
+
         actions = new Actions(driver);
         wait = new WebDriverWait(driver,Duration.ofSeconds(4));
     }
@@ -44,32 +43,6 @@ public class BaseTest {
                 {"NotExistingEmail@mail.com", "NotExistingPassword"},
                 {"yuliyakis85@gmail.com", " "},
                 {" ", " "},
-
         };
-
     }
-
-    protected void openLoginUrl() {
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-    }
-
-    protected void enterEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']")));
-        emailField.clear();
-        emailField.click();
-        emailField.sendKeys(email);
-    }
-    protected void enterPassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='password']")));
-        passwordField.clear();
-        passwordField.click();
-        passwordField.sendKeys(password);
-    }
-
-    protected void clickSubmit() {
-        WebElement logInButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']")));
-        logInButton.click();
-    }
-
 }
