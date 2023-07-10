@@ -13,7 +13,6 @@ import java.time.Duration;
 public class BaseTest {
 
     public static WebDriver driver = null;
-
     public static WebDriverWait wait = null;
     public static String url = "https://qa.koel.app/";
     public static Actions actions = null;
@@ -28,7 +27,6 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         url =BaseURL;
         driver.get(url);
         actions = new Actions(driver);
