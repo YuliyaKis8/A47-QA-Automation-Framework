@@ -75,4 +75,10 @@ public class BaseTest {
        actions.doubleClick(playlistElement).perform();
     }
 
+    public WebElement hoverPlay() {
+        WebElement playBtn =wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[data-testid='play-btn']")));
+        actions.moveToElement(playBtn).perform();
+        return driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+    }
+
 }

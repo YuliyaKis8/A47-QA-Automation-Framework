@@ -21,6 +21,7 @@ public BasePage (WebDriver givenDriver){
 }
 public WebElement findElement (By locator){
     return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+}
 
 }
-}
+

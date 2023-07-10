@@ -13,4 +13,5 @@ public class HomePage extends BasePage {
         return findElement(userAvatarIcon);
     }
 
+
 }
