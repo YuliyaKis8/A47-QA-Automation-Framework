@@ -44,9 +44,7 @@ public class BaseTest {
                 {"NotExistingEmail@mail.com", "NotExistingPassword"},
                 {"yuliyakis85@gmail.com", " "},
                 {" ", " "},
-
         };
-
     }
 
     protected void openLoginUrl() {
@@ -70,6 +68,11 @@ public class BaseTest {
     protected void clickSubmit() {
         WebElement logInButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']")));
         logInButton.click();
+    }
+
+    public void doubleClickChoosePlaylist(){
+       WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+       actions.doubleClick(playlistElement).perform();
     }
 
 }
