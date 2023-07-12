@@ -25,7 +25,6 @@ public class LoginTests extends BaseTest {
     @Test (dataProvider = "IncorrectLoginProviders")
     public void invalidLoginValidEmailPasswordTest(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
         loginPage.IncorrectLogIn(email, password);
         Assert.assertEquals(url, url);
 
