@@ -17,7 +17,7 @@ public class BasePage {
 
 public BasePage (WebDriver givenDriver){
     driver = givenDriver;
-    wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     actions = new Actions(driver);
     PageFactory.initElements(driver,this);
 }
@@ -29,6 +29,7 @@ public void contextClick(WebElement webElement){
     actions.contextClick(contextElement).perform();
 }
 public void hoverAction(WebElement webElement){
+//    WebElement= wait.until(ExpectedConditions.visibilityOf(webElement));
     actions.moveToElement(findElement(webElement)).perform();
 }
 

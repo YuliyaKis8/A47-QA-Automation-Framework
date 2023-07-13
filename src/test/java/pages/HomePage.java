@@ -23,19 +23,22 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "li a.songs")
     WebElement allSongs;
-    @FindBy(css = "[data-testid='play-btn']")
+    @FindBy(xpath = "//span[@title='Play or resume']//i[@class='fa fa-play']")
     WebElement playBtn;
     @FindBy(css = "span.meta.text-secondary span.meta")
     WebElement playlistDetails;
     @FindBy(css = "section#playlistWrapper td.title")
-    WebElement numberOfSongs;
+    List<WebElement> numberOfSongs;
+    @FindBy(xpath = "//a[contains (text(),'Happy Holidays')]")
+    WebElement playListByName;
+    @FindBy(css = ".playlist:nth-child(3)")
+    WebElement playListElement;
 
     public void chooseAllSongsList() {
         allSongs.click();
     }
-    public WebElement hoverPlay() {
+    public void hoverPlay() {
        hoverAction(playBtn);
-        return playBtn;
     }
     public String getPlaylistDetails() {
         return playlistDetails.getText();
@@ -43,10 +46,7 @@ public class HomePage extends BasePage {
     }
 
     public int countSongs(){
-
        return numberOfSongs.size();
-
-//        return driver.findElements(By.cssSelector("section#playlistWrapper td.title")).size();
     }
     public void displayAllSongs() {
         List<WebElement> songList = driver.findElements(By.cssSelector("section#playlistWrapper td.title"));
@@ -55,9 +55,8 @@ public class HomePage extends BasePage {
             System.out.println(e.getText());
         }
     }
-
     public void choosePlaylistByName(String playlistName ) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains (text(),'Happy Holidays')]"))).click();
+        playListByName.click();
     }
     public boolean doesPlaylistExists(){
         WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='" +newPlaylistName+"']")));
@@ -71,9 +70,8 @@ public class HomePage extends BasePage {
         playListInputField.sendKeys(Keys.ENTER);
 
     }
-
     public void doubleClickPlaylist() {
-        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='active']")));
+//        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='active']")));
         actions.doubleClick(playListElement).perform();
     }
 }

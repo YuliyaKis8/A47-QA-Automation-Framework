@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +22,17 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+//    public static WebDriver pickBrowser(String browserName){
+//        switch(browserName){
+//            case "firefox":
+//            WebDriverManager.firefoxdriver().setup();
+//            driver = new FirefoxDriver();
+//            case "MSEdge":
+//                WebDriverManager.edgedriver();
+//                driver = new EdgeDriver();
+//
+//        }
+//    }
     @BeforeMethod
     @Parameters({"BaseURL"})
     static void launchBrowser(String BaseURL){
