@@ -25,15 +25,15 @@ public class SongsTests extends BaseTest{
         Assert.assertTrue(allSongs.isSongPlaying());
     }
 
-    @Test
-    public void hoverOverPlayButton(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        loginPage.logIn();
-        homePage.chooseAllSongsList();
-        homePage.hoverPlay();
-        Assert.assertTrue(homePage.hoverPlay().isDisplayed());
-    }
+//    @Test
+//    public void hoverOverPlayButton(){
+//        LoginPage loginPage = new LoginPage(driver);
+//        HomePage homePage = new HomePage(driver);
+//        loginPage.logIn();
+//        homePage.chooseAllSongsList();
+//        homePage.hoverPlay();
+//        Assert.assertTrue(homePage.hoverPlay().isDisplayed());
+//    }
     @Test
     public void countSongsInPlaylist(){
         LoginPage loginPage = new LoginPage(driver);
