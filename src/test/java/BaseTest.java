@@ -78,6 +78,7 @@ public class BaseTest {
         navigateToPage();
     }
     public WebDriver getDriver(){
+        System.out.println("Driver is accessed");
         return threadDriver.get();
     }
     public static WebDriver lambdaTest() throws MalformedURLException {
