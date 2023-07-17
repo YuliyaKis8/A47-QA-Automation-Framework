@@ -15,7 +15,7 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void LoginValidEmailPasswordTest() {
+    public void loginValidEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.logIn();
