@@ -15,9 +15,9 @@ public class SongsTests extends BaseTest{
 
     @Test
     public void playSong(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongs = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
+        AllSongsPage allSongs = new AllSongsPage(getDriver());
         loginPage.logIn();
         homePage.chooseAllSongsList();
         allSongs.contextClickFirstSong();
@@ -36,8 +36,8 @@ public class SongsTests extends BaseTest{
 //    }
     @Test
     public void countSongsInPlaylist(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         loginPage.logIn();
         homePage.choosePlaylistByName("Happy Holidays");
         homePage.displayAllSongs();

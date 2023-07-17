@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -16,13 +17,17 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
+
 public class BaseTest {
 
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static String url = "https://qa.koel.app/";
     public static Actions actions = null;
+    public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
 
     //    @BeforeSuite
 //    static void setupClass() {
@@ -49,6 +54,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -60,13 +67,31 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL) throws MalformedURLException {
-        driver = pickBrowser((System.getProperty("browser")));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        actions = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//        driver = pickBrowser((System.getProperty("browser")));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().manage().window().maximize();
+        actions = new Actions(getDriver());
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         url = BaseURL;
         driver.get(url);
         navigateToPage();
+    }
+    public WebDriver getDriver(){
+        return threadDriver.get();
+    }
+    public static WebDriver lambdaTest() throws MalformedURLException {
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        FirefoxOptions browserOptions = new FirefoxOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("112.0");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "yuliyakis85");
+        ltOptions.put("accessKey", "ZueK58QGgjHpXSCo12UkShnN9tJtbsf7ZtEkYSpYIOOYWhgvOV");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("w3c", true);
+        browserOptions.setCapability("LT:Options", ltOptions);
+        return new RemoteWebDriver(new URL(hubURL),browserOptions);
     }
 
     public void navigateToPage() {
@@ -74,8 +99,9 @@ public class BaseTest {
     }
 
     @AfterMethod
-    static void closeBrowser() {
-        driver.quit();
+    public void closeBrowser() {
+        getDriver().quit();
+        threadDriver.remove();
     }
 
     @DataProvider(name = "IncorrectLoginProviders")
