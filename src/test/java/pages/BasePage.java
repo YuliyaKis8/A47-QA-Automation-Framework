@@ -19,6 +19,8 @@ public BasePage (WebDriver givenDriver){
     driver = givenDriver;
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     actions = new Actions(driver);
+//    actions = new Actions(getDriver());
+//    wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
     PageFactory.initElements(driver,this);
 }
 public WebElement findElement (WebElement webElement){

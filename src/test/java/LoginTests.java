@@ -26,7 +26,7 @@ public class LoginTests extends BaseTest {
     public void invalidLoginValidEmailPasswordTest(String email, String password) {
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.IncorrectLogIn(email, password);
-        Assert.assertEquals(url, url);
+        Assert.assertEquals(getDriver().getCurrentUrl(),url);
 
     }
 

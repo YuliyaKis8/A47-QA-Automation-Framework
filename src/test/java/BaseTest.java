@@ -71,10 +71,7 @@ public class BaseTest {
         threadDriver.set(pickBrowser(System.getProperty("browser")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         getDriver().manage().window().maximize();
-        actions = new Actions(getDriver());
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         url = BaseURL;
-        driver.get(url);
         navigateToPage();
     }
     public WebDriver getDriver(){
@@ -96,7 +93,7 @@ public class BaseTest {
     }
 
     public void navigateToPage() {
-        driver.get(url);
+        getDriver().get(url);
     }
 
     @AfterMethod
