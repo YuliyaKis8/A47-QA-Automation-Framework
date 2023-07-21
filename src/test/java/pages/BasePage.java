@@ -13,7 +13,7 @@ public class BasePage {
     public static WebDriver driver = null;
     public static WebDriverWait wait = null;
     public static Actions actions = null;
-    public static String url = null;
+//    public static String url = null;
 
 public BasePage (WebDriver givenDriver){
     driver = givenDriver;
@@ -31,8 +31,8 @@ public void contextClick(WebElement webElement){
     actions.contextClick(contextElement).perform();
 }
 public void hoverAction(WebElement webElement){
-//    WebElement= wait.until(ExpectedConditions.visibilityOf(webElement));
-    actions.moveToElement(findElement(webElement)).perform();
+    WebElement waitElement = wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    actions.moveToElement(findElement(waitElement)).perform();
 }
 
 }

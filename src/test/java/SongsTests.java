@@ -32,7 +32,7 @@ public class SongsTests extends BaseTest{
 //        loginPage.logIn();
 //        homePage.chooseAllSongsList();
 //        homePage.hoverPlay();
-//        Assert.assertTrue(homePage.hoverPlay().isDisplayed());
+//        Assert.assertTrue(homePage.playBtnIsDisplayed());
 //    }
     @Test
     public void countSongsInPlaylist(){

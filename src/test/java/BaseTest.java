@@ -24,9 +24,9 @@ import java.util.HashMap;
 public class BaseTest {
 
     public static WebDriver driver = null;
-    public static WebDriverWait wait = null;
+//    public static WebDriverWait wait = null;
     public static String url = "https://qa.koel.app/";
-    public static Actions actions = null;
+//    public static Actions actions = null;
     public static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
 
     //    @BeforeSuite

@@ -40,6 +40,7 @@ public class HomePage extends BasePage {
     public void hoverPlay() {
        hoverAction(playBtn);
     }
+
     public String getPlaylistDetails() {
         return playlistDetails.getText();
 //        return driver.findElement(By.cssSelector("span.meta.text-secondary span.meta")).getText();
@@ -73,5 +74,9 @@ public class HomePage extends BasePage {
     public void doubleClickPlaylist() {
 //        WebElement playListElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='active']")));
         actions.doubleClick(playListElement).perform();
+    }
+
+    public boolean playBtnIsDisplayed() {
+        return playBtn.isDisplayed();
     }
 }
