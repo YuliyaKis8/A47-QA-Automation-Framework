@@ -1,44 +1,22 @@
 package stepDefinition;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static pages.BasePage.actions;
+import pages.LoginPage;
 
 public class SongsTestsStepsDefinitions {
-        WebDriver driver;
-        WebDriverWait wait;
-        public static String url = "https://qa.koel.app/";
+    private final BaseDefinitionsCommonSteps commonSteps;
 
-        @Before
-        public void openBrowser() {
-            WebDriverManager.chromedriver().setup();
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--disable-notifications");
-            driver = new ChromeDriver(options);
-            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        }
+    public SongsTestsStepsDefinitions(BaseDefinitionsCommonSteps commonSteps){
+        this.commonSteps = commonSteps;
+    }
 
-        @After
-        public void closeBrowser() {
-            driver.quit();
-        }
-
-        @Given("I click AllSongs menu")
+        @When("I click AllSongs menu")
         public void clickAllSongs() {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();
         }
@@ -53,5 +31,5 @@ public class SongsTestsStepsDefinitions {
         public void songIsPlaying() {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='pause-btn']"))).isDisplayed();
         }
-    }
+}
 
