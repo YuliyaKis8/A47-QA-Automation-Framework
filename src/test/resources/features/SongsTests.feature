@@ -9,7 +9,7 @@ Feature: SongsTests
 
   Scenario: Add a Song to Playlist
     When I click AllSongs menu
-    And I right click first song
+    And I click first song
     And I choose add too
     And I choose Playlist
     Then song was added to playlist
